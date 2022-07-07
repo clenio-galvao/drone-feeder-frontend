@@ -7,6 +7,15 @@ export interface IDeliveryData {
   longitudeDelivery: string,
   dateDelivery: Date,
   videoNameDelivery: string,
+  droneName: string,
+  droneId: number
+}
+
+export interface IDeliveryCreateEdit {
+  latitudeWithdrawal: string,
+  longitudeWithdrawal: string,
+  latitudeDelivery: string,
+  longitudeDelivery: string,
   droneId: number
 }
 

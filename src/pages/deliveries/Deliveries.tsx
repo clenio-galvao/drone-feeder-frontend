@@ -7,8 +7,9 @@ import ReactSelect from 'react-select';
 import { IDeliveryData, IFiltersDeliveries } from '../interfaces'
 import { urlAxios } from '../constraints'
 import { IDroneData } from '../interfaces'
+import { DeliveryActions, DeliveryModalForm } from './components';
 
-interface IDroneOptions {
+export interface IDroneOptions {
   value: number,
   label: string
 }
@@ -69,15 +70,6 @@ export const Deliveries = () => {
                 droneId: selected?.value ? selected.value : 0
               })}
             />
-            {/* <StyledSelect
-              name="brand"
-              onChange={(event) => setFilters({ ...filters, droneId: Number(event.target.value) })}
-              value={filters.droneId}
-              options={}
-            />
-            <div style={{ color: 'red', fontSize: '12px' }}>
-              {errors.brand && touched.brand && errors.brand}
-            </div> */}
           </Col>
         </Row>
         <hr />
@@ -86,16 +78,16 @@ export const Deliveries = () => {
         style={{ display: 'flex', justifyContent: 'space-between', marginTop: '18px' }}
       >
         <h2>
-          Lista de deliveries
+          Lista de entregas
         </h2>
-        {/* <DeliverieModalForm handleAction={() => getDeliveries()} /> */}
+        <DeliveryModalForm handleAction={() => getDeliveries()} />
       </Container>
       <Container style={{ marginTop: '18px' }}>
         <Table striped hover>
           <thead>
             <tr>
               <th style={{ width: '100px' }}>Ordem</th>
-
+              <th style={{ width: '300px' }}>Drone</th>
               <th style={{ width: '150px' }}>Retirada Latitude</th>
               <th style={{ width: '150px' }}>Retirada Longitude</th>
               <th style={{ width: '150px' }}>Retirada Data</th>
@@ -107,25 +99,26 @@ export const Deliveries = () => {
             </tr>
           </thead>
           <tbody>
-            {deliveriesData && deliveriesData.length > 0 && deliveriesData.map(deliveries => {
+            {deliveriesData && deliveriesData.length > 0 && deliveriesData.map(delivery => {
               return (
-                <tr key={deliveries.id}>
-                  <td>{deliveries.id}</td>
-                  <td>{deliveries.latitudeWithdrawal}</td>
-                  <td>{deliveries.longitudeWithdrawal}</td>
+                <tr key={delivery.id}>
+                  <td>{delivery.id}</td>
+                  <td>{delivery.droneName}</td>
+                  <td>{delivery.latitudeWithdrawal}</td>
+                  <td>{delivery.longitudeWithdrawal}</td>
                   <td>
-                    {deliveries.dateWithdrawal ? format(deliveries.dateWithdrawal, "dd/MM/yyyy' 'HH:mm:ss") : ''}
+                    {/* {delivery.dateWithdrawal ? format(delivery.dateWithdrawal, "dd/MM/yyyy HH:mm:ss") : ''} */}
                   </td>
-                  <td>{deliveries.latitudeDelivery}</td>
-                  <td>{deliveries.longitudeDelivery}</td>
+                  <td>{delivery.latitudeDelivery}</td>
+                  <td>{delivery.longitudeDelivery}</td>
                   <td>
-                    {deliveries.dateDelivery ? format(deliveries.dateDelivery, "dd/MM/yyyy' 'HH:mm:ss") : ''}
+                    {/* {delivery.dateDelivery ? format(delivery.dateDelivery, "dd/MM/yyyy HH:mm:ss") : ''} */}
                   </td>
                   <td>
-                    {/* <DeliveriesActions
-                      Deliveries={Deliveries}
+                    <DeliveryActions
+                      delivery={delivery}
                       handleAction={() => getDeliveries()}
-                    /> */}
+                    />
                   </td>
                 </tr>
               )
