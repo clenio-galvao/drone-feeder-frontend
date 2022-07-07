@@ -28,7 +28,7 @@ export const DeliveryModalForm = ({ delivery, handleAction }: IDeliveryModalForm
     longitudeWithdrawal: delivery?.longitudeWithdrawal || '',
     latitudeDelivery: delivery?.latitudeDelivery || '',
     longitudeDelivery: delivery?.longitudeDelivery || '',
-    droneId: delivery?.drone.id || 1,
+    droneId: delivery?.drone.id || 0,
   }
 
   const validationSchema = Yup.object().shape({
@@ -237,6 +237,7 @@ export const DeliveryModalForm = ({ delivery, handleAction }: IDeliveryModalForm
                         onChange={handleChange}
                       >
                         <>
+                          <option value={0} style={{ fontStyle: 'italic'}}>Escolha um drone</option>
                           {droneOptions && droneOptions.map(op => {
                             return (
                               <option value={op.value}>{op.label}</option>
