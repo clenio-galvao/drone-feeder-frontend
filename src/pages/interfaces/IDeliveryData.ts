@@ -1,14 +1,16 @@
+import { IDroneData } from "./IDroneData"
+
 export interface IDeliveryData {
   id: number,
   latitudeWithdrawal: string,
   longitudeWithdrawal: string,
-  dateWithdrawal: Date,
+  dateWithdrawal: string,
   latitudeDelivery: string,
   longitudeDelivery: string,
-  dateDelivery: Date,
+  dateDelivery: string,
   videoNameDelivery: string,
   droneName: string,
-  droneId: number
+  drone: IDroneData
 }
 
 export interface IDeliveryCreateEdit {

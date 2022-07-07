@@ -36,7 +36,7 @@ export const Drones = () => {
         <Table striped hover>
           <thead>
             <tr>
-              <th style={{ width: '100px' }}>Ordem</th>
+              <th style={{ width: '100px' }}>Drone Id</th>
               <th style={{ width: '200px' }}>Marca</th>
               <th>Modelo</th>
               {/* <th style={{ width: '100px' }}>Quantidade entregas</th> */}

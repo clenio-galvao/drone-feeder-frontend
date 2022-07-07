@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Col, Container, Row, Table } from 'react-bootstrap'
 import axios from 'axios'
-// import { format } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import ReactSelect from 'react-select';
 
 import { IDeliveryData, IFiltersDeliveries } from '../interfaces'
@@ -86,7 +86,7 @@ export const Deliveries = () => {
         <Table striped hover>
           <thead>
             <tr>
-              <th style={{ width: '100px' }}>Ordem</th>
+              <th style={{ width: '100px' }}>Entrega id</th>
               <th style={{ width: '300px' }}>Drone</th>
               <th style={{ width: '150px' }}>Retirada Latitude</th>
               <th style={{ width: '150px' }}>Retirada Longitude</th>
@@ -103,16 +103,14 @@ export const Deliveries = () => {
               return (
                 <tr key={delivery.id}>
                   <td>{delivery.id}</td>
-                  <td>{delivery.droneName}</td>
+                  <td>{`${delivery.drone.brand}-${delivery.drone.model}`}</td>
                   <td>{delivery.latitudeWithdrawal}</td>
                   <td>{delivery.longitudeWithdrawal}</td>
-                  <td>
-                    {/* {delivery.dateWithdrawal ? format(delivery.dateWithdrawal, "dd/MM/yyyy HH:mm:ss") : ''} */}
+                  <td>{delivery.dateWithdrawal ? format(parseISO(delivery.dateWithdrawal), "dd/MM/yyyy HH:mm:ss") : ''}
                   </td>
                   <td>{delivery.latitudeDelivery}</td>
                   <td>{delivery.longitudeDelivery}</td>
-                  <td>
-                    {/* {delivery.dateDelivery ? format(delivery.dateDelivery, "dd/MM/yyyy HH:mm:ss") : ''} */}
+                  <td>{delivery.dateDelivery ? format(parseISO(delivery.dateDelivery), "dd/MM/yyyy HH:mm:ss") : ''}
                   </td>
                   <td>
                     <DeliveryActions

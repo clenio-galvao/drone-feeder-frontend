@@ -28,7 +28,7 @@ export const DeliveryModalForm = ({ delivery, handleAction }: IDeliveryModalForm
     longitudeWithdrawal: delivery?.longitudeWithdrawal || '',
     latitudeDelivery: delivery?.latitudeDelivery || '',
     longitudeDelivery: delivery?.longitudeDelivery || '',
-    droneId: delivery?.droneId || 1,
+    droneId: delivery?.drone.id || 1,
   }
 
   const validationSchema = Yup.object().shape({
