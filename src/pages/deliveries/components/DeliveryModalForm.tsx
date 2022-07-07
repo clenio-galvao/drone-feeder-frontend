@@ -6,7 +6,7 @@ import { FiPlus } from "react-icons/fi"
 import Swal from "sweetalert2"
 import * as Yup from 'yup'
 
-import { StyledInput } from "../../../styled-components"
+import { StyledInput, StyledSelect } from "../../../styled-components"
 import { urlAxios } from "../../constraints"
 import { IDeliveryCreateEdit, IDeliveryData, IDroneData } from "../../interfaces"
 import { IDroneOptions } from "../Deliveries"
@@ -36,7 +36,7 @@ export const DeliveryModalForm = ({ delivery, handleAction }: IDeliveryModalForm
     longitudeWithdrawal: Yup.string().required('Favor informar a longitude onde o drone deverá buscar o pacote'),
     latitudeDelivery: Yup.string().required('Favor informar a latitude onde o drone deverá deixar o pacote'),
     longitudeDelivery: Yup.string().required('Favor informar a longitude onde o drone deverá deixar o pacote'),
-    droneId: Yup.number().required('Favor informar o drone responsável pela entrega'),
+    droneId: Yup.number().required('Favor informar o drone responsável pela entrega').min(1, 'Escolha um drone'),
   })
 
   const DeliveryCreate = (values: IDeliveryCreateEdit) => {
@@ -229,7 +229,7 @@ export const DeliveryModalForm = ({ delivery, handleAction }: IDeliveryModalForm
                       <div>
                         <label>Drone</label>
                       </div>
-                      <select
+                      <StyledSelect
                         className="select"
                         placeholder="Escolha um Drone"
                         name="droneId"
@@ -237,14 +237,17 @@ export const DeliveryModalForm = ({ delivery, handleAction }: IDeliveryModalForm
                         onChange={handleChange}
                       >
                         <>
-                          <option value={0} style={{ fontStyle: 'italic'}}>Escolha um drone</option>
+                          <option value={0} style={{ fontStyle: 'italic'}}></option>
                           {droneOptions && droneOptions.map(op => {
                             return (
                               <option value={op.value}>{op.label}</option>
                             )
                           })}
                         </>
-                      </select>
+                      </StyledSelect>
+                      <div style={{ color: 'red', fontSize: '12px' }}>
+                        {errors.droneId && touched.droneId && errors.droneId}
+                      </div>
                     </Col>
                   </Row>
               </Modal.Body>
