@@ -44,7 +44,7 @@ export const DeliveryActions = ({ delivery, handleAction }: IDeliveryActionProps
   }
 
   const videoDownload = () => {
-    axios.get(urlAxios + 'deliveries/download/' + delivery.id)
+    axios.get(urlAxios + 'deliveries/videos/download/' + delivery.id)
       .then()
       .catch(e => {
         console.log(e)
